@@ -20,92 +20,101 @@
       .map((s) => `<a href="${s.url}" target="_blank" rel="noopener" aria-label="${s.name}" title="${s.name}"><svg class="ic"><use href="#${s.icon}"/></svg></a>`)
       .join("");
   });
-  $("#platforms").innerHTML = KAHANI.social
-    .map((s) => `<a class="platform" href="${s.url}" target="_blank" rel="noopener">
-        <span class="p-ic"><svg class="ic"><use href="#${s.icon}"/></svg></span>
-        <span><b>${s.name}</b><small>${esc(s.handle)}</small></span>
-        <svg class="ic arrow"><use href="#i-arrow"/></svg></a>`)
-    .join("");
 
   /* ---------- Hero slideshow ---------- */
-  const slidesBox = $("#heroSlides"), dotsBox = $("#heroDots");
+  const slidesBox = $("#heroSlides"), dotsBox = $("#heroDots"), placeEl = $("#slidePlace");
   HERO_SLIDES.forEach((s, i) => {
     const d = document.createElement("div");
     d.className = "slide" + (i === 0 ? " on" : "");
     d.style.backgroundImage = `url('${img(s.src, 1920)}')`;
-    d.innerHTML = `<span class="slide-place"><svg class="ic"><use href="#i-pin"/></svg>${esc(s.place)}</span>`;
     slidesBox.appendChild(d);
     const b = document.createElement("button");
+    b.type = "button";
     b.setAttribute("aria-label", "Show " + s.place);
     if (i === 0) b.className = "on";
     b.onclick = () => go(i, true);
     dotsBox.appendChild(b);
   });
+  placeEl.innerHTML = `<svg class="ic"><use href="#i-pin"/></svg>${esc(HERO_SLIDES[0].place)}`;
   let cur = 0, timer;
   function go(i, manual) {
     const slides = slidesBox.children, dots = dotsBox.children;
     slides[cur].classList.remove("on"); dots[cur].classList.remove("on");
     cur = (i + slides.length) % slides.length;
     slides[cur].classList.add("on"); dots[cur].classList.add("on");
+    placeEl.innerHTML = `<svg class="ic"><use href="#i-pin"/></svg>${esc(HERO_SLIDES[cur].place)}`;
     if (manual) restart();
   }
-  function restart() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 6000); }
+  function restart() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 6500); }
   restart();
+
+  /* ---------- Marquee ---------- */
+  const names = PACKAGES.map((p) => p.name).concat(["Umrah"]);
+  const row = names.map((n) => `<span>${esc(n)}</span><i>✦</i>`).join("");
+  $("#marquee").innerHTML = row + row;
 
   /* ---------- Services ---------- */
   $("#svcGrid").innerHTML = SERVICES.map((s, i) => `
-    <article class="svc reveal" style="--d:${i * 60}ms">
-      <span class="svc-ic"><svg class="ic"><use href="#${s.icon}"/></svg></span>
+    <article class="svc reveal" style="--d:${(i % 4) * 70}ms">
+      <div class="svc-top">
+        <span class="svc-ic"><svg class="ic"><use href="#${s.icon}"/></svg></span>
+        <span class="svc-num">${String(i + 1).padStart(2, "0")}</span>
+      </div>
       <h3>${esc(s.title)}</h3>
       <p>${esc(s.text)}</p>
-      ${s.link
-        ? `<a href="${s.link}" class="more">Learn more <svg class="ic"><use href="#i-arrow"/></svg></a>`
-        : `<a href="#" class="more" data-wa="Hello Kahani Travel, I need help with ${esc(s.title)}.">Enquire <svg class="ic"><use href="#i-arrow"/></svg></a>`}
+      <a href="${s.link || "#contact"}" class="more" ${s.link ? "" : `data-enquire="${esc(s.title)}"`}>${s.link ? "Discover" : "Enquire"} <svg class="ic"><use href="#i-arrow"/></svg></a>
     </article>`).join("") + `
-    <article class="svc svc-poster reveal">
-      <img src="assets/services-poster.jpg" alt="Kahani Travel & Tours services poster" loading="lazy">
+    <article class="svc svc-cta reveal" style="--d:210ms">
+      <p class="eyebrow light">Not sure where to start?</p>
+      <h3>Talk to a travel expert today.</h3>
+      <a href="#" class="btn btn-wa" data-wa="Hello Kahani Travel, I need some travel advice."><svg class="ic"><use href="#i-wa"/></svg>WhatsApp Us</a>
+      <a href="tel:+919946500546" class="svc-call">or call +91 99465 00546</a>
     </article>`;
 
   /* ---------- Packages ---------- */
   const grid = $("#pkgGrid");
   function renderPackages(cat) {
     grid.innerHTML = PACKAGES.filter((p) => p.category === cat).map((p, i) => `
-      <article class="pkg" style="--d:${i * 70}ms" tabindex="0" data-id="${p.id}">
-        <div class="pkg-img" style="background-image:url('${img(p.image, 800)}')">
-          <span class="pkg-dur"><svg class="ic"><use href="#i-cal"/></svg>${esc(p.duration)}</span>
-        </div>
+      <article class="pkg" style="--d:${i * 70}ms" tabindex="0" role="button" aria-label="${esc(p.name)} tour package, ${esc(p.duration)}. View itinerary" data-id="${p.id}">
+        <img class="pkg-img" src="${img(p.image, 700)}" alt="${esc(p.name)}: ${esc(p.route)}" loading="lazy" width="700" height="875">
+        <span class="pkg-dur">${esc(p.duration)}</span>
         <div class="pkg-body">
-          <h3><span class="flag">${p.flag}</span>${esc(p.name)}</h3>
+          <p class="pkg-route">${esc(p.route)}</p>
+          <h3>${esc(p.name)}</h3>
           <p class="pkg-tag">${esc(p.tagline)}</p>
-          <p class="pkg-route"><svg class="ic"><use href="#i-pin"/></svg>${esc(p.route)}</p>
           <ul>${p.highlights.slice(0, 3).map((h) => `<li>${esc(h)}</li>`).join("")}</ul>
-          <div class="pkg-foot">
-            <span class="ask">Price on request</span>
-            <span class="view">View itinerary <svg class="ic"><use href="#i-arrow"/></svg></span>
-          </div>
+          <span class="view">View journey <svg class="ic"><use href="#i-arrow"/></svg></span>
         </div>
       </article>`).join("");
-    requestAnimationFrame(() => $$(".pkg", grid).forEach((el) => el.classList.add("in")));
+    requestAnimationFrame(() => requestAnimationFrame(() => $$(".pkg", grid).forEach((el) => el.classList.add("in"))));
   }
   function setTab(cat) {
-    $$(".tab").forEach((t) => t.classList.toggle("active", t.dataset.tab === cat));
+    $$(".tab").forEach((t) => {
+      const on = t.dataset.tab === cat;
+      t.classList.toggle("active", on);
+      t.setAttribute("aria-selected", on);
+    });
     renderPackages(cat);
   }
   $$(".tab").forEach((t) => t.addEventListener("click", () => setTab(t.dataset.tab)));
-  $$("[data-tab-link]").forEach((a) => a.addEventListener("click", () => setTab(a.dataset.tabLink)));
+  $$("[data-tab-link]").forEach((a) => a.addEventListener("click", () => {
+    setTab(a.dataset.tabLink);
+    if (a.dataset.open) setTimeout(() => openPkg(a.dataset.open), 600);
+  }));
   grid.addEventListener("click", (e) => { const c = e.target.closest(".pkg"); if (c) openPkg(c.dataset.id); });
-  grid.addEventListener("keydown", (e) => { if (e.key === "Enter") { const c = e.target.closest(".pkg"); if (c) openPkg(c.dataset.id); } });
+  grid.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { const c = e.target.closest(".pkg"); if (c) { e.preventDefault(); openPkg(c.dataset.id); } } });
   setTab("international");
 
   /* ---------- Modal ---------- */
   const modal = $("#modal");
-  let lastFocus;
+  let lastFocus, currentPkg;
   function openPkg(id) {
     const p = PACKAGES.find((x) => x.id === id);
     if (!p) return;
+    currentPkg = p;
     lastFocus = document.activeElement;
-    $("#mHero").style.backgroundImage = `linear-gradient(180deg,rgba(15,22,45,.05),rgba(15,22,45,.85)),url('${img(p.image, 1400)}')`;
-    $("#mBadge").textContent = `${p.flag}  ${p.duration}`;
+    $("#mHero").style.backgroundImage = `linear-gradient(180deg,rgba(20,27,51,.05),rgba(20,27,51,.88)),url('${img(p.image, 1400)}')`;
+    $("#mBadge").textContent = p.duration;
     $("#mTitle").textContent = p.name;
     $("#mRoute").textContent = p.route;
     $("#mItin").innerHTML = p.itinerary.map((d, i) => `<li><span class="day">Day ${i + 1}</span><div><b>${esc(d[0])}</b><p>${esc(d[1])}</p></div></li>`).join("");
@@ -117,79 +126,138 @@
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("lock");
+    $(".modal-card", modal).scrollTop = 0;
     $(".modal-x", modal).focus();
   }
   function closeModal() {
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lock");
-    if (lastFocus) lastFocus.focus();
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
   }
   $$("[data-close]", modal).forEach((el) => el.addEventListener("click", closeModal));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("open")) closeModal(); });
+  $("#mEnquire").addEventListener("click", () => {
+    closeModal();
+    prefill("Holiday package", `I'm interested in the ${currentPkg.name} package (${currentPkg.duration}). Please share the details and price.`);
+  });
 
-  /* ---------- Dropdowns & footer lists ---------- */
-  const destOpts = (list) => list.map((n) => `<option>${esc(n)}</option>`).join("");
+  /* ---------- Dropdowns ---------- */
+  const opt = (list) => list.map((n) => `<option>${esc(n)}</option>`).join("");
   const groups = { international: "International", india: "India", kerala: "Kerala" };
   $("#quickDest").innerHTML = `<option value="" disabled selected>Where to?</option>` +
-    Object.entries(groups).map(([k, label]) => `<optgroup label="${label}">${destOpts(PACKAGES.filter((p) => p.category === k).map((p) => p.name))}</optgroup>`).join("") +
-    `<optgroup label="More">${destOpts(EXTRA_DESTINATIONS)}</optgroup>`;
-  $("#serviceSelect").innerHTML = destOpts(["Holiday package", ...SERVICES.map((s) => s.title), "Something else"]);
-  const fLink = (p) => `<a href="#packages" data-tab-link="${p.category}" data-open="${p.id}">${esc(p.name)}</a>`;
-  $("#fIntl").innerHTML = PACKAGES.filter((p) => p.category === "international").map(fLink).join("");
-  $("#fIndia").innerHTML = PACKAGES.filter((p) => p.category !== "international").map(fLink).join("");
-  $$("footer [data-tab-link]").forEach((a) => a.addEventListener("click", () => { setTab(a.dataset.tabLink); setTimeout(() => openPkg(a.dataset.open), 500); }));
+    Object.entries(groups).map(([k, label]) => `<optgroup label="${label}">${opt(PACKAGES.filter((p) => p.category === k).map((p) => p.name))}</optgroup>`).join("") +
+    `<optgroup label="More">${opt(EXTRA_DESTINATIONS)}</optgroup>`;
+  const serviceSel = $("#serviceSelect");
+  serviceSel.innerHTML = opt(["Holiday package", ...SERVICES.map((s) => s.title), "Something else"]);
 
-  /* ---------- Forms ---------- */
+  /* ---------- Prefill the contact form & scroll to it ---------- */
+  function prefill(service, message) {
+    if (service) {
+      const match = [...serviceSel.options].find((o) => o.text === service);
+      if (match) serviceSel.value = match.text;
+    }
+    if (message) $("#cMessage").value = message;
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => $("#contactForm [name=name]").focus({ preventScroll: true }), 700);
+  }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-enquire]");
+    if (!a) return;
+    e.preventDefault();
+    prefill(a.dataset.enquire, `Hello, I'd like to know more about ${a.dataset.enquire}.`);
+  });
+
   $("#quickForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const f = new FormData(e.target);
-    let month = "";
+    let month = "Flexible";
     if (f.get("month")) {
       const [y, m] = f.get("month").split("-");
       month = new Date(y, m - 1).toLocaleString("en-IN", { month: "long", year: "numeric" });
     }
-    const msg = `Hello Kahani Travel, I'd like a quote.\nDestination: ${f.get("dest")}\nTravel month: ${month || "Flexible"}\nTravellers: ${f.get("pax")}`;
-    window.open(wa(msg), "_blank", "noopener");
+    prefill("Holiday package", `I'd like a quote.\nDestination: ${f.get("dest")}\nTravel month: ${month}\nTravellers: ${f.get("pax")}`);
   });
-  $("#contactForm").addEventListener("submit", (e) => {
+
+  /* ---------- Contact form → email (FormSubmit) ---------- */
+  const form = $("#contactForm"), status = $("#formStatus"), btn = $("#cSubmit");
+  const toast = $("#toast");
+  const showToast = (msg) => { toast.textContent = msg; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 5000); };
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const f = new FormData(e.target);
-    const via = e.submitter ? e.submitter.value : "wa";
-    const body = `Name: ${f.get("name")}\nPhone: ${f.get("phone")}\nInterested in: ${f.get("service")}\n\n${f.get("msg") || ""}`;
-    if (via === "mail") {
-      location.href = `mailto:${KAHANI.email}?subject=${encodeURIComponent("Enquiry: " + f.get("service"))}&body=${encodeURIComponent(body)}`;
-    } else {
-      window.open(wa("Hello Kahani Travel!\n" + body), "_blank", "noopener");
+    status.className = "form-status";
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const f = new FormData(form);
+    if (f.get("_honey")) return; // spam bot
+    const data = {
+      name: f.get("name"),
+      phone: f.get("phone"),
+      email: f.get("email") || "Not given",
+      service: f.get("service"),
+      message: f.get("message") || "-",
+      _subject: `New website enquiry: ${f.get("service")} (${f.get("name")})`,
+      _template: "table",
+      _captcha: "false"
+    };
+    if (f.get("email")) data._replyto = f.get("email");
+    btn.disabled = true;
+    btn.querySelector("span").textContent = "Sending…";
+    try {
+      const res = await fetch(KAHANI.formEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data)
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || String(out.success) === "false") throw new Error(out.message || "Send failed");
+      form.reset();
+      status.textContent = "Thank you! Your enquiry has been sent. We'll contact you shortly.";
+      status.classList.add("ok");
+      showToast("Enquiry sent. Thank you!");
+    } catch (err) {
+      const body = `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nInterested in: ${data.service}\n\n${data.message}`;
+      const mailto = `mailto:${KAHANI.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(body)}`;
+      status.innerHTML = `Sorry, we couldn't send it automatically. <a href="${mailto}">Email it to us</a> or <a href="${wa("Hello Kahani Travel!\n" + body)}" target="_blank" rel="noopener">send on WhatsApp</a>.`;
+      status.classList.add("err");
+    } finally {
+      btn.disabled = false;
+      btn.querySelector("span").textContent = "Send Enquiry";
     }
   });
 
   /* ---------- Header, menu, scroll ---------- */
-  const header = $("#header"), burger = $("#burger"), nav = $("#nav"), totop = $("#totop");
+  const header = $("#header"), burger = $("#burger"), nav = $("#nav");
   const onScroll = () => {
-    header.classList.toggle("scrolled", scrollY > 40);
-    totop.classList.toggle("show", scrollY > 700);
+    header.classList.toggle("scrolled", scrollY > 30);
+    document.body.classList.toggle("past-hero", scrollY > innerHeight * 0.6);
   };
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
-  burger.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
+  const setMenu = (open) => {
+    nav.classList.toggle("open", open);
     burger.classList.toggle("open", open);
+    header.classList.toggle("menu-open", open);
     burger.setAttribute("aria-expanded", open);
-  });
-  $$("a", nav).forEach((a) => a.addEventListener("click", () => { nav.classList.remove("open"); burger.classList.remove("open"); burger.setAttribute("aria-expanded", false); }));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    document.body.classList.toggle("lock", open);
+  };
+  burger.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+  $$("a", nav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  addEventListener("resize", () => { if (innerWidth > 1080 && nav.classList.contains("open")) setMenu(false); });
 
   // active nav link
-  const sections = ["home", "about", "services", "packages", "contact"].map((id) => document.getElementById(id));
   const spy = new IntersectionObserver((ents) => ents.forEach((en) => {
-    if (en.isIntersecting) $$(".nav a").forEach((a) => a.classList.toggle("current", a.getAttribute("href") === "#" + en.target.id && !a.dataset.tabLink));
+    if (en.isIntersecting) $$(".nav > a").forEach((a) => a.classList.toggle("current", a.getAttribute("href") === "#" + en.target.id && !a.dataset.tabLink));
   }), { rootMargin: "-45% 0px -50% 0px" });
-  sections.forEach((s) => s && spy.observe(s));
+  ["about", "services", "attestation", "contact"].forEach((id) => spy.observe(document.getElementById(id)));
 
   /* ---------- Reveal on scroll ---------- */
   const io = new IntersectionObserver((ents) => ents.forEach((en) => {
     if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-  }), { threshold: 0.12 });
+  }), { threshold: 0.1 });
   $$(".reveal").forEach((el) => io.observe(el));
 
   bindWa();

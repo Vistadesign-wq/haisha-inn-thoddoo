@@ -6,6 +6,9 @@
 const KAHANI = {
   whatsapp: "919946500546",          // number used for all WhatsApp buttons
   email: "info@kahanitravel.in",
+  // Enquiry forms are emailed to this address through FormSubmit (free, no server needed).
+  // The very first enquiry triggers a one-time "Activate" email to info@kahanitravel.in; click it once.
+  formEndpoint: "https://formsubmit.co/ajax/info@kahanitravel.in",
   social: [
     { name: "Instagram", handle: "@kahani_tours_", icon: "i-ig", url: "https://www.instagram.com/kahani_tours_/" },
     { name: "Facebook", handle: "Kahani Travel", icon: "i-fb", url: "https://www.facebook.com/asafirtravel/" },
