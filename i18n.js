@@ -4,6 +4,30 @@
 (function(){
   var LANGS = [['en','English','EN'],['ar','العربية','AR'],['ru','Русский','RU'],['de','Deutsch','DE'],['fr','Français','FR'],['it','Italiano','IT']];
   var ROWS = [
+
+  /* ---------- 2026 redesign ---------- */
+  ["Contact Us","اتصل بنا","Контакты","Kontakt","Contactez-nous","Contattaci"],
+  ["Your island home <em>is waiting</em>","بيتك في الجزيرة <em>بانتظارك</em>","Ваш дом на острове <em>ждёт вас</em>","Ihr Inselzuhause <em>wartet auf Sie</em>","Votre maison sur l’île <em>vous attend</em>","La tua casa sull’isola <em>ti aspetta</em>"],
+  ["Message our family team on WhatsApp; we’ll help with dates, transfers and meals.","راسل فريقنا العائلي عبر واتساب؛ سنساعدك في التواريخ والتنقلات والوجبات.","Напишите нашей семейной команде в WhatsApp — поможем с датами, трансфером и питанием.","Schreiben Sie unserem Familienteam auf WhatsApp – wir helfen bei Daten, Transfers und Mahlzeiten.","Écrivez à notre équipe familiale sur WhatsApp : nous vous aidons pour les dates, les transferts et les repas.","Scrivi al nostro team di famiglia su WhatsApp: ti aiutiamo con date, transfer e pasti."],
+  ["A family welcome, <em>every single day</em>","ترحيب عائلي <em>كل يوم</em>","Семейное гостеприимство <em>каждый день</em>","Familiäre Gastfreundschaft, <em>jeden Tag</em>","Un accueil familial, <em>chaque jour</em>","Un’accoglienza di famiglia, <em>ogni giorno</em>"],
+  ["Welcome to Haisha Inn","مرحبًا بكم في حيشة إن","Добро пожаловать в Haisha Inn","Willkommen im Haisha Inn","Bienvenue au Haisha Inn","Benvenuti all’Haisha Inn"],
+  ["The garden island","جزيرة الحدائق","Остров-сад","Die Garteninsel","L’île jardin","L’isola giardino"],
+  ["Fruit farms, coral reefs <em>and quiet beaches</em>","مزارع فاكهة وشعاب مرجانية <em>وشواطئ هادئة</em>","Фруктовые фермы, коралловые рифы <em>и тихие пляжи</em>","Obstfarmen, Korallenriffe <em>und ruhige Strände</em>","Vergers, récifs coralliens <em>et plages paisibles</em>","Frutteti, barriere coralline <em>e spiagge tranquille</em>"],
+  ["Discover Thoddoo","اكتشف ثودو","Откройте Тодду","Thoddoo entdecken","Découvrir Thoddoo","Scopri Thoddoo"],
+  ["Now just 20 minutes <em>by seaplane</em>","20 دقيقة فقط الآن <em>بالطائرة المائية</em>","Теперь всего 20 минут <em>на гидросамолёте</em>","Jetzt nur 20 Minuten <em>mit dem Wasserflugzeug</em>","Désormais à 20 minutes <em>en hydravion</em>","Ora a soli 20 minuti <em>in idrovolante</em>"],
+  ["Plan your trip","خطط لرحلتك","Спланировать поездку","Reise planen","Préparer le voyage","Pianifica il viaggio"],
+  ["Seaplane","طائرة مائية","Гидросамолёт","Wasserflugzeug","Hydravion","Idrovolante"],
+  ["Speedboat","قارب سريع","Скоростной катер","Schnellboot","Bateau rapide","Motoscafo"],
+  ["Shared speedboat","قارب سريع مشترك","Общий скоростной катер","Geteiltes Schnellboot","Bateau rapide partagé","Motoscafo condiviso"],
+  ["Public ferry","العبّارة العامة","Паром","Öffentliche Fähre","Ferry public","Traghetto pubblico"],
+  ["Three ways <em>to reach Thoddoo</em>","ثلاث طرق <em>للوصول إلى ثودو</em>","Три способа <em>добраться до Тодду</em>","Drei Wege <em>nach Thoddoo</em>","Trois façons <em>de rejoindre Thoddoo</em>","Tre modi <em>per raggiungere Thoddoo</em>"],
+  ["New since February 2026","جديد منذ فبراير 2026","Новинка с февраля 2026","Neu seit Februar 2026","Nouveau depuis février 2026","Novità da febbraio 2026"],
+  ["Most popular","الأكثر شيوعًا","Самый популярный","Am beliebtesten","Le plus populaire","Il più scelto"],
+  ["Budget option","الخيار الاقتصادي","Бюджетный вариант","Günstige Option","Option économique","Opzione economica"],
+  ["Scheduled Maldivian flights from Velana Airport, launched February 2026.","رحلات منتظمة لشركة Maldivian من مطار فيلانا، بدأت في فبراير 2026.","Регулярные рейсы Maldivian из аэропорта Велана, с февраля 2026 года.","Linienflüge von Maldivian ab Flughafen Velana, seit Februar 2026.","Vols réguliers Maldivian depuis l’aéroport de Velana, lancés en février 2026.","Voli di linea Maldivian dall’aeroporto di Velana, attivi da febbraio 2026."],
+  ["Daily shared boats from the airport jetty to Thoddoo harbour.","قوارب مشتركة يومية من رصيف المطار إلى ميناء ثودو.","Ежедневные катера от причала аэропорта до гавани Тодду.","Tägliche Boote vom Flughafensteg zum Hafen von Thoddoo.","Bateaux partagés quotidiens de la jetée de l’aéroport au port de Thoddoo.","Barche condivise ogni giorno dal molo dell’aeroporto al porto di Thoddoo."],
+  ["The budget option from Malé on set days of the week.","الخيار الاقتصادي من ماليه في أيام محددة من الأسبوع.","Бюджетный вариант из Мале по определённым дням недели.","Die günstige Variante ab Malé an festen Wochentagen.","L’option économique depuis Malé certains jours de la semaine.","L’opzione economica da Malé in giorni fissi della settimana."],
+  ["Is there a seaplane to Thoddoo?","هل توجد طائرة مائية إلى ثودو؟","Летает ли гидросамолёт на Тодду?","Gibt es ein Wasserflugzeug nach Thoddoo?","Y a-t-il un hydravion pour Thoddoo ?","C’è un idrovolante per Thoddoo?"],
   /* ---------- navigation & site chrome ---------- */
   ["Home","الرئيسية","Главная","Start","Accueil","Home"],
   ["Rooms","الغرف","Номера","Zimmer","Chambres","Camere"],
@@ -217,11 +241,9 @@
   /* ---------- Thoddoo Haisha Inn ---------- */
   ["Family guesthouse · Thoddoo, Maldives","دار ضيافة عائلية · ثودو، جزر المالديف","Семейный гестхаус · Тодду, Мальдивы","Familien-Gästehaus · Thoddoo, Malediven","Maison d'hôtes familiale · Thoddoo, Maldives","Guesthouse di famiglia · Thoddoo, Maldive"],
   ["Come as a guest, <em>leave as family</em>","تعال ضيفًا، <em>وغادر فردًا من العائلة</em>","Приезжайте гостем, <em>уезжайте членом семьи</em>","Als Gast kommen, <em>als Familie gehen</em>","Arrivez en invité, <em>repartez en famille</em>","Arriva come ospite, <em>riparti come famiglia</em>"],
-  ["Mohamed’s table <em>is set for you</em>","مائدة محمد <em>جاهزة لك</em>","Стол Мохамеда <em>уже накрыт для вас</em>","Mohameds Tisch <em>ist für Sie gedeckt</em>","La table de Mohamed <em>vous attend</em>","La tavola di Mohamed <em>è pronta per te</em>"],
   ["Request a booking","اطلب حجزًا","Запросить бронь","Buchung anfragen","Demander une réservation","Richiedi una prenotazione"],
   ["See the room","شاهد الغرفة","Посмотреть номер","Zum Zimmer","Voir la chambre","Vedi la camera"],
   ["Meet your hosts","تعرّف على مضيفيك","Знакомьтесь с хозяевами","Ihre Gastgeber","Vos hôtes","I tuoi host"],
-  ["Mohamed, his son <em>and the whole family</em>","محمد وابنه <em>وكل العائلة</em>","Мохамед, его сын <em>и вся семья</em>","Mohamed, sein Sohn <em>und die ganze Familie</em>","Mohamed, son fils <em>et toute la famille</em>","Mohamed, suo figlio <em>e tutta la famiglia</em>"],
   ["Why guests choose Haisha","لماذا يختار الضيوف هايشا","Почему гости выбирают Haisha","Warum Gäste Haisha wählen","Pourquoi choisir Haisha","Perché gli ospiti scelgono Haisha"],
   ["Three reasons <em>to book direct</em>","ثلاثة أسباب <em>للحجز المباشر</em>","Три причины <em>бронировать напрямую</em>","Drei Gründe <em>direkt zu buchen</em>","Trois raisons <em>de réserver en direct</em>","Tre motivi <em>per prenotare diretto</em>"],
   ["Room to breathe","مساحة واسعة","Простор","Viel Platz","De l'espace","Spazio per respirare"],
