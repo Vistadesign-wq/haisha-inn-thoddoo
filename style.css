@@ -637,3 +637,108 @@ h1 em,h2 em,h3 em{font-weight:400;color:var(--lagoon)}
 .reach p{font-size:14px;color:var(--muted)}
 @media (max-width:980px){.reach{grid-template-columns:1fr 1fr 1fr}.reach>div:first-child{grid-column:1/-1}.reach>div:nth-child(2){border-left:0}}
 @media (max-width:600px){.reach{grid-template-columns:1fr}.reach>div{border-left:0;border-top:1px solid var(--line)}}
+
+/* ---------- reviews: horizontal slider, three at a time ---------- */
+.tm-wrap .tm-track{display:flex;gap:22px;columns:auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 8px;cursor:grab}
+.tm-wrap .tm-track::-webkit-scrollbar{display:none}
+.tm-wrap .tm-track.drag{cursor:grabbing;scroll-snap-type:none}
+.tm-wrap .tm{flex:0 0 calc((100% - 44px)/3);margin:0;scroll-snap-align:start;min-height:100%}
+.tm-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:28px}
+.tm-arrow{width:48px;height:48px;border:1px solid var(--line-2);background:transparent;color:var(--cocoa);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s,color .25s}
+.tm-arrow:hover{background:var(--cocoa);color:#fff}
+.tm-dots{display:flex;gap:8px}
+.tm-dots button{width:22px;height:2px;padding:0;border:0;background:var(--line-2);cursor:pointer;transition:background .25s,width .25s}
+.tm-dots button.on{background:var(--coral);width:38px}
+.tm-count{font:500 12px var(--body);letter-spacing:.2em;color:var(--muted);min-width:64px;text-align:center}
+@media (max-width:980px){.tm-wrap .tm{flex-basis:calc((100% - 22px)/2)}}
+@media (max-width:640px){.tm-wrap .tm{flex-basis:88%}.tm-dots{display:none}}
+
+/* ---------- booking form v2 ---------- */
+.form{align-items:end}
+.form label,.tel-group{align-self:stretch;justify-content:flex-end}
+.tel-group{display:flex;flex-direction:column;gap:6px}
+.tel-lbl{font:700 11.5px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tel-row{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:8px}
+.tel-row select,.tel-row input{border:1.5px solid var(--line-2);padding:12px 13px;background:var(--cream);font:400 16px var(--body);color:var(--cocoa);min-width:0;width:100%;border-radius:0}
+.tel-row select:focus,.tel-row input:focus{outline:none;border-color:var(--lagoon);background:#fff}
+.form select,.form input{height:50px}
+
+/* photo captions removed (descriptions stay in alt text for search engines and screen readers) */
+.gal span,.mosaic figcaption,.collage figcaption,.lb figcaption{display:none!important}
+
+/* ---------- seaplane timetable ---------- */
+.sp{display:grid;grid-template-columns:1.05fr 1fr 1.15fr;background:#fff;border:1px solid var(--line);margin-top:24px;padding:40px 0}
+.sp>div{padding:0 36px}
+.sp>div+div{border-left:1px solid var(--line-2)}
+.sp-h{display:flex;align-items:baseline;gap:26px;flex-wrap:wrap}
+.sp-h span{font:400 30px var(--display);color:var(--cocoa)}
+.sp-h b{font:500 17px var(--body);color:var(--cocoa)}
+.sp-days{color:var(--muted);font-size:14.5px;margin-top:4px}
+.sp-txt{margin-top:14px;font-size:16px;line-height:1.7;color:var(--text)}
+.sp-b{display:flex;flex-direction:column;gap:22px}
+.sp-b div{display:flex;flex-direction:column}
+.sp-b b{font:500 15px var(--body);color:var(--cocoa)}
+.sp-b span{color:var(--muted);font-size:15px}
+.sp-c{display:flex;flex-direction:column;gap:14px}
+.sp-c p{font-size:14px;color:var(--muted)}
+.sp-c p b{font:500 22px var(--display);color:var(--cocoa);margin-right:4px}
+.sp-c span{display:block;font-size:13.5px;color:var(--muted)}
+.sp-c .sp-fine{font-size:12.5px;font-style:italic;line-height:1.7}
+@media (max-width:900px){.sp{grid-template-columns:1fr;padding:30px 0}.sp>div+div{border-left:0;border-top:1px solid var(--line-2);margin-top:24px;padding-top:24px}.sp>div{padding:0 26px}}
+
+/* ---------- cookie consent ---------- */
+.ck{position:fixed;right:24px;bottom:24px;z-index:140;width:min(560px,calc(100vw - 32px));background:#fff;box-shadow:0 30px 70px rgba(8,24,30,.28);border-top:2px solid var(--coral);padding:24px 26px 18px;opacity:0;transform:translateY(16px);transition:opacity .3s,transform .3s}
+.ck.on{opacity:1;transform:none}
+.ck-head{display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ck-logo{width:34px;height:42px;flex-shrink:0}
+.ck h2{font:500 24px var(--display);color:var(--cocoa)}
+.ck-txt{font-size:14px;line-height:1.65;color:var(--text);margin:14px 0}
+.ck-prefs{display:grid;gap:8px;margin-bottom:14px}
+.ck-prefs label{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--cream);cursor:pointer}
+.ck-prefs input{margin-top:4px;accent-color:var(--cocoa);width:16px;height:16px}
+.ck-prefs b{display:block;font:500 14px var(--body);color:var(--cocoa)}
+.ck-prefs small{font-size:12.5px;color:var(--muted)}
+.ck-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ck-btns .btn{min-height:46px;padding:0 10px;font-size:11px;letter-spacing:.14em}
+.ck-links{display:flex;justify-content:center;gap:18px;margin-top:12px;font-size:12.5px}
+.ck-links a{color:var(--lagoon)}
+@media (max-width:760px){.ck{right:16px;left:16px;bottom:calc(92px + env(safe-area-inset-bottom,0px));width:auto;padding:20px 18px 14px}.ck-btns{grid-template-columns:1fr}}
+.map-off{height:100%;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;background:var(--mist);font-size:14.5px;color:var(--muted)}
+
+/* ---------- "book direct" window ---------- */
+.promo{position:fixed;inset:0;z-index:160;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(8,24,30,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;transition:opacity .35s}
+.promo.on{opacity:1}
+.promo-box{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);width:min(780px,100%);background:#ECE6DC;box-shadow:0 40px 90px rgba(0,0,0,.35);transform:translateY(18px) scale(.98);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.promo.on .promo-box{transform:none}
+.promo-img img{width:100%;height:100%;min-height:380px;object-fit:cover}
+.promo-body{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:56px 40px 40px}
+.promo-body h2{font:italic 400 clamp(32px,3.6vw,42px)/1.12 var(--display);color:var(--cocoa)}
+.promo-body h2 em{color:var(--cocoa)}
+.promo-body p{font-size:15.5px;line-height:1.7;color:var(--text);max-width:330px}
+.promo-wa{width:100%;max-width:330px;background:#2E2420!important}
+.promo-wa:hover{background:var(--coral)!important}
+.promo-later{border:0;background:none;color:var(--muted);font:400 14px var(--body);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.promo-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border:0;background:none;color:var(--cocoa);cursor:pointer;display:flex;align-items:center;justify-content:center}
+@media (max-width:640px){.promo-box{grid-template-columns:1fr}.promo-img img{min-height:0;height:190px}.promo-body{padding:34px 24px 28px;gap:14px}}
+
+/* ---------- logo: pineapple mark + THODDOO / HAISHA INN / MALDIVES ---------- */
+.logo{gap:12px;color:#2B2B2B}
+.logo-svg{width:36px;height:48px}
+.logo-t{display:flex;flex-direction:column;align-items:center;line-height:1}
+.logo-t .l1{font:500 8.5px var(--body);letter-spacing:.5em;margin-right:-.5em;color:var(--cocoa);margin-top:0}
+.logo-t b{font:600 23px/1.05 var(--display);letter-spacing:.08em;color:var(--cocoa);margin:3px 0 4px;white-space:nowrap}
+.logo-t .l2{display:flex;align-items:center;gap:7px;font:500 7.5px var(--body);letter-spacing:.45em;color:var(--coral);margin-top:0;align-self:stretch;justify-content:center}
+.logo-t .l2::before,.logo-t .l2::after{content:"";flex:1;height:1px;background:currentColor;opacity:.7}
+.logo-t .l2::after{margin-left:-.45em}
+.ft .logo{color:#E9E4DA;flex-direction:column;gap:12px;align-items:flex-start}
+.ft .logo-svg{width:46px;height:60px}
+.ft .logo-t{align-items:flex-start}
+.ft .logo-t .l1{color:#C9D6D6}
+.ft .logo-t b{color:#F8F5EF;font-size:28px}
+.ft .logo-t .l2{color:var(--apricot);justify-content:flex-start;align-self:auto;min-width:100%}
+@media (max-width:560px){.logo-svg{width:30px;height:40px}.logo-t b{font-size:20px}.logo-t .l1{font-size:7.5px}}
+.logo-svg{width:40px;height:52px}
+.ft .logo{display:inline-flex;align-items:center}
+.ft .logo-t{align-items:center}
+.ft .logo-t .l2{justify-content:center}
+.bbar label span{display:block}

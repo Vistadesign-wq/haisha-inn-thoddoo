@@ -1,20 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 84" width="512" height="672">
   <title>Thoddoo Haisha Inn</title>
-  <defs>
-    <linearGradient id="hs-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FB8BB"/><stop offset="1" stop-color="#2E7E86"/></linearGradient>
-    <linearGradient id="hs-door" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A86E"/><stop offset="1" stop-color="#8A6A38"/></linearGradient>
-  </defs>
-  <path d="M12 60V30a20 20 0 0 1 40 0v30z" fill="url(#hs-sky)"/>
-  <circle cx="32" cy="31" r="8.5" fill="#F3E7CC"/>
-  <path d="M12 44h40v16H12z" fill="#123A43"/>
-  <path d="M15 48h34M18 52h28" stroke="#F3E7CC" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
-  <path d="M24 60V46a8 8 0 0 1 16 0v14z" fill="url(#hs-door)"/>
-  <path d="M28 47.5v10M32 46v12M36 47.5v10" stroke="#5A4320" stroke-width="1" stroke-linecap="round" opacity=".55"/>
-  <path d="M12 60V30a20 20 0 0 1 40 0v30" fill="none" stroke="#123A43" stroke-width="2.2"/>
-  <g fill="#D9B98A">
-    <circle cx="16" cy="18.5" r="3.2"/><circle cx="21" cy="13.5" r="2.6"/><circle cx="12.5" cy="24" r="2.4"/>
-    <circle cx="47" cy="17" r="2.8"/><circle cx="51.5" cy="22.5" r="2.4"/><circle cx="43" cy="12.5" r="2.2"/>
-  </g>
-  <g fill="#FFFFFF" opacity=".9"><circle cx="18.5" cy="16" r="1.3"/><circle cx="49" cy="19.5" r="1.2"/><circle cx="25" cy="11.3" r="1.5"/><circle cx="39" cy="10.8" r="1.4"/></g>
-  <g fill="#4F7A5A"><path d="M23 12c-3.5-1-6.5.5-8 3 3-.8 5.5-.6 8-3z"/><path d="M41 11c3.5-1.3 6.8 0 8.5 2.5-3.2-.6-5.8-.4-8.5-2.5z"/></g>
+  <defs><clipPath id="pn-clip"><ellipse cx="32" cy="60" rx="15.5" ry="19.5"/></clipPath></defs>
+  <g color="#2B2B2B"><g fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"><path d="M32 37C25.5 29 25.5 16 32 4C38.5 16 38.5 29 32 37Z" transform="rotate(-64 32 36) translate(32 36) scale(0.66) translate(-32 -36)"/><path d="M32 37C25.5 29 25.5 16 32 4C38.5 16 38.5 29 32 37Z" transform="rotate(64 32 36) translate(32 36) scale(0.66) translate(-32 -36)"/><path d="M32 37C25.5 29 25.5 16 32 4C38.5 16 38.5 29 32 37Z" transform="rotate(-33 32 36) translate(32 36) scale(0.86) translate(-32 -36)"/><path d="M32 37C25.5 29 25.5 16 32 4C38.5 16 38.5 29 32 37Z" transform="rotate(33 32 36) translate(32 36) scale(0.86) translate(-32 -36)"/><path d="M32 37C25.5 29 25.5 16 32 4C38.5 16 38.5 29 32 37Z" transform="rotate(0 32 36) translate(32 36) scale(1) translate(-32 -36)"/></g><ellipse cx="32" cy="60" rx="15.5" ry="19.5" fill="#B9B0A5"/><path clip-path="url(#pn-clip)" d="M-54.4 36L-6.4 84M-6.4 36L-54.4 84M-49.2 36L-1.2 84M-1.2 36L-49.2 84M-44.0 36L4.0 84M4.0 36L-44.0 84M-38.8 36L9.2 84M9.2 36L-38.8 84M-33.6 36L14.4 84M14.4 36L-33.6 84M-28.4 36L19.6 84M19.6 36L-28.4 84M-23.2 36L24.8 84M24.8 36L-23.2 84M-18.0 36L30.0 84M30.0 36L-18.0 84M-12.8 36L35.2 84M35.2 36L-12.8 84M-7.6 36L40.4 84M40.4 36L-7.6 84M-2.4 36L45.6 84M45.6 36L-2.4 84M2.8 36L50.8 84M50.8 36L2.8 84M8.0 36L56.0 84M56.0 36L8.0 84M13.2 36L61.2 84M61.2 36L13.2 84M18.4 36L66.4 84M66.4 36L18.4 84M23.6 36L71.6 84M71.6 36L23.6 84M28.8 36L76.8 84M76.8 36L28.8 84M34.0 36L82.0 84M82.0 36L34.0 84M39.2 36L87.2 84M87.2 36L39.2 84M44.4 36L92.4 84M92.4 36L44.4 84M49.6 36L97.6 84M97.6 36L49.6 84M54.8 36L102.8 84M102.8 36L54.8 84M60.0 36L108.0 84M108.0 36L60.0 84M65.2 36L113.2 84M113.2 36L65.2 84M70.4 36L118.4 84M118.4 36L70.4 84" stroke="#F4F0E9" stroke-width="1.5" fill="none"/></g>
 </svg>
