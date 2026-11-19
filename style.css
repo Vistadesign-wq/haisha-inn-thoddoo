@@ -742,3 +742,8 @@ h1 em,h2 em,h3 em{font-weight:400;color:var(--lagoon)}
 .ft .logo-t{align-items:center}
 .ft .logo-t .l2{justify-content:center}
 .bbar label span{display:block}
+
+/* page header photo: shown whole at its own proportions (no cropping or zooming) */
+.phero{grid-template-columns:minmax(0,1fr) auto}
+.phero>img{width:auto;max-width:62vw;height:clamp(440px,64vh,640px);object-fit:cover}
+@media (max-width:900px){.phero{grid-template-columns:1fr}.phero>img{width:100%;max-width:none;height:auto;aspect-ratio:auto}}
