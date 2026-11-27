@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vistadesign-wq.github.io/haisha-inn-thoddoomaldives/sitemap.xml
+Sitemap: https://vistadesign-wq.github.io/haisha-inn-thoddoo/sitemap.xml
